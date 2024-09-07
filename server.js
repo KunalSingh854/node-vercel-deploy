@@ -1,8 +1,13 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Serve the index.html file for the root URL
 app.get('/', (req, res) => {
-  res.send('<h1>Hello, World from Expressss on Vercel!</h1>');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 const PORT = process.env.PORT || 3000;
